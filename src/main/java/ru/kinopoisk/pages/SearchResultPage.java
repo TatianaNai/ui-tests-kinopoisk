@@ -1,10 +1,9 @@
 package ru.kinopoisk.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SearchResultPage extends BasePage{
+public class SearchResultPage extends BasePage implements PagesUniqueElement{
     @FindBy(xpath = "//*[contains(@class,'element most_wanted')]//*[contains(@class,'pic')]")
     private WebElement mostWantedMovieImage;
     @FindBy(xpath = "//*[contains(@class,'element most_wanted')]//*[contains(@class,'name')]//*[contains(@class,'js-serp-metrika')]")
@@ -13,7 +12,7 @@ public class SearchResultPage extends BasePage{
     private WebElement mostWantedMovieReleaseYear;
 
     public SearchResultPage() {
-        super(By.xpath("//*[contains(@class,'search_results_topText')]"));
+        super(SEARCH_PAGE_LOCATOR);
     }
 
     public void clickMostWantedMovieImage() {

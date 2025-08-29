@@ -1,21 +1,20 @@
 package ru.kinopoisk.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class MoviePage extends BasePage{
+public class MoviePage extends BasePage implements PagesUniqueElement{
     @FindBy(xpath = "//*[@itemprop='name']")
     private WebElement movieTitle;
 
     public MoviePage() {
-        super(By.xpath("//img[contains(@class,'film-poster')]"));
+        super(MOVIE_PAGE_LOCATOR);
     }
 
     public String getMovieName() {
-        String movieNameAndYear = movieTitle.getText();
-        int openBracketIndex = movieNameAndYear.indexOf("(");
-        return movieNameAndYear.substring(0, openBracketIndex).trim();
+        String movieNameAndReleaseYear = movieTitle.getText();
+        int openBracketIndex = movieNameAndReleaseYear.indexOf("(");
+        return movieNameAndReleaseYear.substring(0, openBracketIndex).trim();
     }
 
     public int getMovieReleaseYear() {
