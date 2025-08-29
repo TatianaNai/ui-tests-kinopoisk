@@ -3,6 +3,7 @@ package ru.kinopoisk;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.kinopoisk.driverManagers.Driver;
+import ru.kinopoisk.utils.ConfigManager;
 import ru.kinopoisk.utils.Props;
 
 public class BaseTest {
@@ -10,7 +11,7 @@ public class BaseTest {
     public void setUp() {
         Driver.INSTANCE.getDriver();
         Driver.INSTANCE.getDriver().manage().window().maximize();
-        Driver.INSTANCE.getDriver().get(Props.getProperty("url"));
+        Driver.INSTANCE.getDriver().get(ConfigManager.getConfig().getUrl());
     }
 
     @AfterMethod
