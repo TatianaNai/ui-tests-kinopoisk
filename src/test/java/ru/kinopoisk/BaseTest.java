@@ -10,7 +10,7 @@ public class BaseTest {
     public void setUp() {
         Driver.INSTANCE.getDriver();
         Driver.INSTANCE.getDriver().manage().window().maximize();
-        Driver.INSTANCE.getDriver().get(ConfigManager.getConfig().getUrl());
+        Driver.INSTANCE.getDriver().get(ConfigManager.getCONFIG().getUrl());
     }
 
     @AfterMethod

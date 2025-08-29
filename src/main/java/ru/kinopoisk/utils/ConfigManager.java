@@ -8,12 +8,12 @@ import java.io.IOException;
 
 public class ConfigManager {
     @Getter
-    private static final Config config;
+    private static final Config CONFIG;
 
     static {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            config = mapper.readValue(
+            CONFIG = mapper.readValue(
                     Props.class.getClassLoader()
                             .getResourceAsStream("config.json"),
                     Config.class);

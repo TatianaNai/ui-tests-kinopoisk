@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Props {
-    private static final Properties properties = new Properties();
+    private static final Properties PROPERTIES = new Properties();
 
     static {
         try {
-            properties.load(Props.class.getClassLoader()
+            PROPERTIES.load(Props.class.getClassLoader()
                     .getResourceAsStream("application.properties"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -16,6 +16,6 @@ public class Props {
     }
 
     public static String getProperty(String key) {
-        return properties.getProperty(key);
+        return PROPERTIES.getProperty(key);
     }
 }
