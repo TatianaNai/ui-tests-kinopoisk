@@ -26,11 +26,11 @@ public class FindMovieTest extends BaseTest{
         homePage.clickSearchButton();
 
         log.info("3. Choose movie");
+        Assert.assertTrue(searchResultPage.isPageOpen(), "Search result page was not open");
         String movieSearchName = searchResultPage.getMostWantedMovieName();
         int movieSearchReleaseYear = searchResultPage.getMostWantedMovieReleaseYear();
         log.info("Movie from search page: name - \"" + movieSearchName + "\", release year - \"" + movieSearchReleaseYear + "\"");
         Assert.assertEquals(movieSearchName, expectedMovieName, "Movie's name from search page: \"" + movieSearchName + "\" is not equal to \"" + expectedMovieName + "\"");
-        Assert.assertTrue(searchResultPage.isPageOpen(), "Search result page was not open");
 
         log.info("4. Go to movie page");
         searchResultPage.clickMostWantedMovieImage();
