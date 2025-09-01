@@ -25,4 +25,17 @@ public class WaitManager {
             return false;
         }
     }
+
+    public static WebElement waitElementVisible(By locator) {
+        try {
+            return WAIT.until(driver -> {
+                WebElement element = Driver.INSTANCE.getDriver().findElement(locator);
+                element.isDisplayed();
+                return element;
+            });
+        }
+        catch (TimeoutException ex){
+            throw new RuntimeException("WebElement with locator \"" + locator + "\" was not found");
+        }
+    }
 }
