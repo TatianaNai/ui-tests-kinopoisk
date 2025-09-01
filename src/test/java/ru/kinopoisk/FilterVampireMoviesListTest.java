@@ -32,5 +32,20 @@ public class FilterVampireMoviesListTest extends BaseTest{
         String categoryTitle = moviesListPage.getCategoryTitle();
         assertEquals("Фильмы про вампиров", categoryTitle, "Category title \"" + categoryTitle + "\" is not equal to \"Фильмы про вампиров\"");
 
+        log.info("5. Set filters and check amount of movies in list");
+        moviesListPage.clickFilterByName("Все страны");
+        moviesListPage.clickCheckboxOptionByName("США");
+        moviesListPage.clickFilterByName("Все жанры");
+        moviesListPage.clickCheckboxOptionByName("Фэнтези");
+        int amountMoviesTotal = moviesListPage.getAmountMoviesTotal();
+        log.info("Amount of movies total: " + amountMoviesTotal);
+        int amountMoviesOnPage = moviesListPage.getAmountMoviesOnPage();
+        log.info("Amount of movies on page: " + amountMoviesOnPage);
+        assertEquals(amountMoviesTotal, amountMoviesOnPage, "Amount of movies on page: " + amountMoviesOnPage + " is not equal to amount of movies total: " + amountMoviesTotal);
+
+        log.info("6. Check first movie's name on the list");
+        String firstMovieName = moviesListPage.getFirstMovieName();
+        log.info("First movie's name on the list:" + firstMovieName);
+        assertEquals("Ван Хельсинг", firstMovieName, "First movie's name on the list is \"" + firstMovieName + "\" but expected \"Ван Хельсинг\"");
     }
 }
