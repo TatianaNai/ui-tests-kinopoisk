@@ -34,7 +34,7 @@ public class FindMovieTest extends BaseTest{
         String movieSearchName = searchResultPage.getMostWantedMovieName();
         int movieSearchReleaseYear = searchResultPage.getMostWantedMovieReleaseYear();
         log.info("Movie from search page: name - \"" + movieSearchName + "\", release year - \"" + movieSearchReleaseYear + "\"");
-        assertEquals(movieSearchName, movieName, "Movie's name from search page: \"" + movieSearchName + "\" is not equal to \"" + movieName + "\"");
+        assertEquals(movieName, movieSearchName, "Movie's name from search page: \"" + movieSearchName + "\" is not equal to \"" + movieName + "\"");
 
         log.info("4. Go to movie page");
         searchResultPage.clickMostWantedMovieImage();
@@ -46,8 +46,8 @@ public class FindMovieTest extends BaseTest{
         int movieReleaseYearFromMoviePage = moviePage.getMovieReleaseYear();
         log.info("Movie from movie page: name - \"" + movieNameFromMoviePage + "\", release year - \"" + movieReleaseYearFromMoviePage + "\"");
         assertAll(
-                () -> assertEquals(movieNameFromMoviePage, movieSearchName, "Movie's name: \"" + movieNameFromMoviePage + "\" is not equal to movie's name from search page: \"" + movieSearchName + "\""),
-                () -> assertEquals(movieReleaseYearFromMoviePage, movieSearchReleaseYear, "Movie's release year: \"" + movieReleaseYearFromMoviePage + "\" is not equal to movie's release year from search page: \"" + movieSearchReleaseYear + "\"")
+                () -> assertEquals(movieSearchName, movieNameFromMoviePage, "Movie's name: \"" + movieNameFromMoviePage + "\" is not equal to movie's name from search page: \"" + movieSearchName + "\""),
+                () -> assertEquals(movieSearchReleaseYear, movieReleaseYearFromMoviePage, "Movie's release year: \"" + movieReleaseYearFromMoviePage + "\" is not equal to movie's release year from search page: \"" + movieSearchReleaseYear + "\"")
         );
     }
 }
