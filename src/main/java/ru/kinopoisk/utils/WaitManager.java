@@ -20,8 +20,7 @@ public class WaitManager {
                 WebElement element = Driver.INSTANCE.getDriver().findElement(locator);
                 return element.isDisplayed();
             });
-        }
-        catch (TimeoutException ex){
+        } catch (TimeoutException ex) {
             return false;
         }
     }
@@ -33,9 +32,16 @@ public class WaitManager {
                 element.isDisplayed();
                 return element;
             });
-        }
-        catch (TimeoutException ex){
+        } catch (TimeoutException ex) {
             throw new RuntimeException("WebElement with locator \"" + locator + "\" was not found");
+        }
+    }
+
+    public static void waitElementsDisappear(By locator) {
+        try {
+            WAIT.until(driver -> driver.findElements(locator).isEmpty());
+        } catch (TimeoutException ex) {
+            throw new RuntimeException("Elements with locator \"" + locator + "\" did not disappear");
         }
     }
 }
