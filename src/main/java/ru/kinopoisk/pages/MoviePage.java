@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MoviePage extends BasePage implements PagesUniqueElement{
+public class MoviePage extends BasePage {
     @FindBy(xpath = "//*[@itemprop='name']")
     private WebElement movieTitle;
 

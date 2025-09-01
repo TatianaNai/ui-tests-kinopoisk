@@ -6,4 +6,6 @@ public interface PagesUniqueElement {
     By HOME_PAGE_LOCATOR = By.xpath("//*[contains(@class,'styles_title') and contains(.,'Главная')]");
     By MOVIE_PAGE_LOCATOR = By.xpath("//img[contains(@class,'film-poster')]");
     By SEARCH_PAGE_LOCATOR = By.xpath("//*[contains(@class,'search_results_topText')]");
+    By CHOOSE_LISTS_PAGE_LOCATOR = By.xpath("//*[contains(@class,'styles_title') and contains(text(),'Списки')]");
+    By MOVIES_LISTS_PAGE_LOCATOR = By.xpath("//*[contains(@class,'styles_sidebarSlot')]");
 }

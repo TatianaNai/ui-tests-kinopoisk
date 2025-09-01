@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import ru.kinopoisk.driverManagers.Driver;
 import ru.kinopoisk.utils.WaitManager;
 
-public abstract class BasePage {
+public abstract class BasePage implements PagesUniqueElement{
     private final By locator;
 
     public BasePage(By locator) {
