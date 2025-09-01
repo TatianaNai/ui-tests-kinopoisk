@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.kinopoisk.pages.HomePage;
 import ru.kinopoisk.pages.ChooseListsPage;
 import ru.kinopoisk.pages.MoviesListPage;
+import ru.kinopoisk.testData.TestDataManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,19 +25,19 @@ public class FilterVampireMoviesListTest extends BaseTest{
         assertTrue(chooseListsPage.isPageOpen(), "ChooseLists page was not open");
 
         log.info("3. Choose category of movies");
-        chooseListsPage.clickListMoviesButtonByTitle("Фильмы про вампиров");
+        chooseListsPage.clickListMoviesButtonByTitle(TestDataManager.getTEST_DATA().getCategory());
         MoviesListPage moviesListPage = new MoviesListPage();
         assertTrue(moviesListPage.isPageOpen(), "MoviesList page was not open");
 
         log.info("4. Check if page of right category open");
         String categoryTitle = moviesListPage.getCategoryTitle();
-        assertEquals("Фильмы про вампиров", categoryTitle, "Category title \"" + categoryTitle + "\" is not equal to \"Фильмы про вампиров\"");
+        assertEquals(TestDataManager.getTEST_DATA().getCategory(), categoryTitle, "Category title \"" + categoryTitle + "\" is not equal to \"" + TestDataManager.getTEST_DATA().getCategory() + "\"");
 
         log.info("5. Set filters and check amount of movies in list");
-        moviesListPage.clickFilterByName("Все страны");
-        moviesListPage.clickCheckboxOptionByName("США");
-        moviesListPage.clickFilterByName("Все жанры");
-        moviesListPage.clickCheckboxOptionByName("Фэнтези");
+        moviesListPage.clickFilterByName(TestDataManager.getTEST_DATA().getAllCountries());
+        moviesListPage.clickCheckboxOptionByName(TestDataManager.getTEST_DATA().getCountry());
+        moviesListPage.clickFilterByName(TestDataManager.getTEST_DATA().getAllGenres());
+        moviesListPage.clickCheckboxOptionByName(TestDataManager.getTEST_DATA().getGenre());
         int amountMoviesTotal = moviesListPage.getAmountMoviesTotal();
         log.info("Amount of movies total: " + amountMoviesTotal);
         int amountMoviesOnPage = moviesListPage.getAmountMoviesOnPage();
@@ -45,7 +46,7 @@ public class FilterVampireMoviesListTest extends BaseTest{
 
         log.info("6. Check first movie's name on the list");
         String firstMovieName = moviesListPage.getFirstMovieName();
-        log.info("First movie's name on the list:" + firstMovieName);
-        assertEquals("Ван Хельсинг", firstMovieName, "First movie's name on the list is \"" + firstMovieName + "\" but expected \"Ван Хельсинг\"");
+        log.info("First movie's name on the list: " + firstMovieName);
+        assertEquals(TestDataManager.getTEST_DATA().getMovieName(), firstMovieName, "First movie's name on the list is \"" + firstMovieName + "\" but expected \"" + TestDataManager.getTEST_DATA().getMovieName() + "\"");
     }
 }
