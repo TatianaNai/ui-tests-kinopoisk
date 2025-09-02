@@ -17,7 +17,7 @@ public class OpenHomePageTest extends BaseTest{
     public void shouldHaveCorrectOpenHomePage() {
 
         log.info("1. Go to home page of Kinopoisk");
-        HomePage homePage = new HomePage();
+        HomePage homePage = new HomePage(driver);
         assertTrue(homePage.isPageOpen(), "Home page was not open");
     }
 }

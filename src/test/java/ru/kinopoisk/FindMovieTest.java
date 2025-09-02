@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import ru.kinopoisk.pages.HomePage;
 import ru.kinopoisk.pages.MoviePage;
 import ru.kinopoisk.pages.SearchResultPage;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
@@ -23,7 +24,7 @@ public class FindMovieTest extends BaseTest{
     public void shouldHaveCorrectToFindMovie(String movieName) {
 
         log.info("1. Go to home page of Kinopoisk");
-        HomePage homePage = new HomePage();
+        HomePage homePage = new HomePage(driver);
         assertTrue(homePage.isPageOpen(), "Home page was not open");
 
         log.info("2. Search for movie");
@@ -31,7 +32,7 @@ public class FindMovieTest extends BaseTest{
         homePage.clickSearchButton();
 
         log.info("3. Choose movie");
-        SearchResultPage searchResultPage = new SearchResultPage();
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
         assertTrue(searchResultPage.isPageOpen(), "Search result page was not open");
         String movieSearchName = searchResultPage.getMostWantedMovieName();
         int movieSearchReleaseYear = searchResultPage.getMostWantedMovieReleaseYear();
@@ -40,7 +41,7 @@ public class FindMovieTest extends BaseTest{
 
         log.info("4. Go to movie page");
         searchResultPage.clickMostWantedMovieImage();
-        MoviePage moviePage = new MoviePage();
+        MoviePage moviePage = new MoviePage(driver);
         assertTrue(moviePage.isPageOpen(), "Movie page was not open");
 
         log.info("5. Check movie's name and release year");

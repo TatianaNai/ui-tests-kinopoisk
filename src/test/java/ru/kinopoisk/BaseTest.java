@@ -2,19 +2,25 @@ package ru.kinopoisk;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
 import ru.kinopoisk.driverManagers.Driver;
+import ru.kinopoisk.driverManagers.DriverFactory;
 import ru.kinopoisk.utils.Props;
 
 public class BaseTest {
+    protected WebDriver driver;
+
     @BeforeEach
     public void setUp() {
-        Driver.INSTANCE.getDriver();
-        Driver.INSTANCE.getDriver().manage().window().maximize();
-        Driver.INSTANCE.getDriver().get(Props.getProperty("url"));
+        driver = DriverFactory.createDriver();
+        driver.manage().window().maximize();
+        driver.get(Props.getProperty("url"));
     }
 
     @AfterEach
     public void tearDown() {
-        Driver.INSTANCE.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

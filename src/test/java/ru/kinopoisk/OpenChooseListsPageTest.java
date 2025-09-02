@@ -18,12 +18,12 @@ public class OpenChooseListsPageTest extends BaseTest {
     public void shouldHaveCorrectOpenChooseListsPage() {
 
         log.info("1. Go to home page of Kinopoisk");
-        HomePage homePage = new HomePage();
+        HomePage homePage = new HomePage(driver);
         assertTrue(homePage.isPageOpen(), "Home page was not open");
 
         log.info("2. Go to chooseLists page of Kinopoisk");
         homePage.clickMoviesButton();
-        ChooseListsPage chooseListsPage = new ChooseListsPage();
+        ChooseListsPage chooseListsPage = new ChooseListsPage(driver);
         assertTrue(chooseListsPage.isPageOpen(), "ChooseLists page was not open");
     }
 }

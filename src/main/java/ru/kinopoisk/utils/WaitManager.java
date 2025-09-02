@@ -8,16 +8,17 @@ import ru.kinopoisk.driverManagers.Driver;
 import java.time.Duration;
 
 public class WaitManager {
-    private static final Wait<WebDriver> WAIT = new FluentWait<>(Driver.INSTANCE.getDriver())
-            .withTimeout(Duration.ofSeconds(10))
-            .pollingEvery(Duration.ofMillis(500))
-            .ignoring(NoSuchElementException.class)
-            .ignoring(StaleElementReferenceException.class);
 
-    public static boolean isElementVisible(By locator) {
+    public static boolean isElementVisible(By locator, WebDriver webDriver) {
+        Wait<WebDriver> wait = new FluentWait<>(webDriver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
+
         try {
-            return WAIT.until(driver -> {
-                WebElement element = Driver.INSTANCE.getDriver().findElement(locator);
+            return wait.until(driver -> {
+                WebElement element = webDriver.findElement(locator);
                 return element.isDisplayed();
             });
         } catch (TimeoutException ex) {
@@ -25,10 +26,15 @@ public class WaitManager {
         }
     }
 
-    public static WebElement waitElementVisible(By locator) {
+    public static WebElement waitElementVisible(By locator, WebDriver webDriver) {
+        Wait<WebDriver> wait = new FluentWait<>(webDriver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
         try {
-            return WAIT.until(driver -> {
-                WebElement element = Driver.INSTANCE.getDriver().findElement(locator);
+            return wait.until(driver -> {
+                WebElement element = webDriver.findElement(locator);
                 element.isDisplayed();
                 return element;
             });
@@ -37,9 +43,14 @@ public class WaitManager {
         }
     }
 
-    public static void waitElementsDisappear(By locator) {
+    public static void waitElementsDisappear(By locator, WebDriver webDriver) {
+        Wait<WebDriver> wait = new FluentWait<>(webDriver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
         try {
-            WAIT.until(driver -> driver.findElements(locator).isEmpty());
+            wait.until(driver -> webDriver.findElements(locator).isEmpty());
         } catch (TimeoutException ex) {
             throw new RuntimeException("Elements with locator \"" + locator + "\" did not disappear");
         }

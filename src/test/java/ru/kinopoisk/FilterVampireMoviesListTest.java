@@ -18,17 +18,17 @@ public class FilterVampireMoviesListTest extends BaseTest{
     public void shouldHaveCorrectFilterMoviesList() {
 
         log.info("1. Go to home page of Kinopoisk");
-        HomePage homePage = new HomePage();
+        HomePage homePage = new HomePage(driver);
         assertTrue(homePage.isPageOpen(), "Home page was not open");
 
         log.info("2. Go to chooseLists page of Kinopoisk");
         homePage.clickMoviesButton();
-        ChooseListsPage chooseListsPage = new ChooseListsPage();
+        ChooseListsPage chooseListsPage = new ChooseListsPage(driver);
         assertTrue(chooseListsPage.isPageOpen(), "ChooseLists page was not open");
 
         log.info("3. Choose category of movies");
         chooseListsPage.clickListMoviesButtonByTitle(TestDataManager.getTEST_DATA().getCategory());
-        MoviesListPage moviesListPage = new MoviesListPage();
+        MoviesListPage moviesListPage = new MoviesListPage(driver);
         assertTrue(moviesListPage.isPageOpen(), "MoviesList page was not open");
 
         log.info("4. Check if page of right category open");

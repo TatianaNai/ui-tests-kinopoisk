@@ -2,6 +2,7 @@ package ru.kinopoisk.pages;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.kinopoisk.utils.WaitManager;
@@ -21,8 +22,8 @@ public class MoviesListPage extends BasePage{
     private final String movieNameLocator = ".//*[contains(@class,'styles_mainTitle')]";
     private final String loadingElementsLocator = "//*[contains(@class,'styles_skeleton')]";
 
-    public MoviesListPage() {
-        super(MOVIES_LISTS_PAGE_LOCATOR);
+    public MoviesListPage(WebDriver driver) {
+        super(MOVIES_LISTS_PAGE_LOCATOR, driver);
     }
 
     public String getCategoryTitle() {
@@ -30,15 +31,15 @@ public class MoviesListPage extends BasePage{
     }
 
     public void clickFilterByName(String name) {
-        WaitManager.waitElementVisible(By.xpath(String.format(filterLocator, name))).click();
+        WaitManager.waitElementVisible(By.xpath(String.format(filterLocator, name)), driver).click();
     }
 
     public void clickCheckboxOptionByName(String name) {
-        WaitManager.waitElementVisible(By.xpath(String.format(checkboxOptionLocator, name))).click();
+        WaitManager.waitElementVisible(By.xpath(String.format(checkboxOptionLocator, name)), driver).click();
     }
 
     public int getAmountMoviesTotal() {
-        WaitManager.waitElementsDisappear(By.xpath(loadingElementsLocator));
+        WaitManager.waitElementsDisappear(By.xpath(loadingElementsLocator), driver);
         String amountMoviesTotal = amountMoviesTotalLabel.getText();
         return Integer.parseInt(
                 amountMoviesTotal.substring(0, amountMoviesTotal.indexOf(' '))
@@ -46,7 +47,7 @@ public class MoviesListPage extends BasePage{
     }
 
     public int getAmountMoviesOnPage() {
-        WaitManager.waitElementsDisappear(By.xpath(loadingElementsLocator));
+        WaitManager.waitElementsDisappear(By.xpath(loadingElementsLocator), driver);
         return movieItems.size();
     }
 

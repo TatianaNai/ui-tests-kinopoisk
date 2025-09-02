@@ -1,6 +1,7 @@
 package ru.kinopoisk.pages;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,8 +13,8 @@ public class MoviePage extends BasePage {
     @FindBy(xpath = "//*[@itemprop='name']")
     private WebElement movieTitle;
 
-    public MoviePage() {
-        super(MOVIE_PAGE_LOCATOR);
+    public MoviePage(WebDriver driver) {
+        super(MOVIE_PAGE_LOCATOR, driver);
     }
 
     public String getMovieName() {
