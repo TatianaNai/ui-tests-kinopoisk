@@ -4,6 +4,7 @@
         <classes>
             <class name="ru.kinopoisk.FindMovieTest"/>
             <class name="ru.kinopoisk.OpenChooseListsPageTest"/>
+            <class name="ru.kinopoisk.OpenHomePageTest"/>
         </classes>
     </test>
 </suite>
