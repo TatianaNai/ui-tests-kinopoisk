@@ -1,17 +1,23 @@
 package ru.kinopoisk;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.kinopoisk.pages.HomePage;
 import ru.kinopoisk.pages.MoviePage;
 import ru.kinopoisk.pages.SearchResultPage;
+import ru.kinopoisk.utils.Props;
+
 import static org.testng.Assert.*;
 
 @Slf4j
 public class FindMovieTest extends BaseTest{
-    @DataProvider(name = "movies")
+    @DataProvider(name = "movies", parallel=true)
     public Object[][] moviesName() {
         return new Object[][]{
                 {"Начало"},
@@ -22,9 +28,14 @@ public class FindMovieTest extends BaseTest{
 
     @Test(dataProvider = "movies")
     public void shouldHaveCorrectToFindMovie(String movieName) {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        WebDriver driver = new ChromeDriver(options);
+        driver.get(Props.getProperty("url"));
 
         log.info("1. Go to home page of Kinopoisk");
-        HomePage homePage = new HomePage();
+        HomePage homePage = new HomePage(driver);
         assertTrue(homePage.isPageOpen(), "Home page was not open");
 
         log.info("2. Search for movie");
@@ -32,7 +43,7 @@ public class FindMovieTest extends BaseTest{
         homePage.clickSearchButton();
 
         log.info("3. Choose movie");
-        SearchResultPage searchResultPage = new SearchResultPage();
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
         assertTrue(searchResultPage.isPageOpen(), "Search result page was not open");
         String movieSearchName = searchResultPage.getMostWantedMovieName();
         int movieSearchReleaseYear = searchResultPage.getMostWantedMovieReleaseYear();
@@ -41,7 +52,7 @@ public class FindMovieTest extends BaseTest{
 
         log.info("4. Go to movie page");
         searchResultPage.clickMostWantedMovieImage();
-        MoviePage moviePage = new MoviePage();
+        MoviePage moviePage = new MoviePage(driver);
         assertTrue(moviePage.isPageOpen(), "Movie page was not open");
 
         log.info("5. Check movie's name and release year");
@@ -52,5 +63,7 @@ public class FindMovieTest extends BaseTest{
         softAssert.assertEquals(movieNameFromMoviePage, movieSearchName, "Movie's name: \"" + movieNameFromMoviePage + "\" is not equal to movie's name from search page: \"" + movieSearchName + "\"");
         softAssert.assertEquals(movieReleaseYearFromMoviePage, movieSearchReleaseYear, "Movie's release year: \"" + movieReleaseYearFromMoviePage + "\" is not equal to movie's release year from search page: \"" + movieSearchReleaseYear + "\"");
         softAssert.assertAll();
+
+        driver.quit();
     }
 }
