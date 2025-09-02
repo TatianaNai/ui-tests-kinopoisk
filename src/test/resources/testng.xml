@@ -3,6 +3,7 @@
     <test name="Test">
         <classes>
             <class name="ru.kinopoisk.FindMovieTest"/>
+            <class name="ru.kinopoisk.OpenChooseListsPageTest"/>
         </classes>
     </test>
 </suite>
