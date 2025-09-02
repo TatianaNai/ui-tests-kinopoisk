@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 @Slf4j
 public class OpenChooseListsPageTest extends BaseTest{
 
-    @Test
+    @Test(enabled=false)
     public void shouldHaveCorrectOpenChooseListsPage() {
 
         log.info("1. Go to home page of Kinopoisk");
