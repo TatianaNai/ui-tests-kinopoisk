@@ -17,3 +17,6 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=4   
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+      - SE_VNC=true
+    ports:
+      - "5900:5900"
