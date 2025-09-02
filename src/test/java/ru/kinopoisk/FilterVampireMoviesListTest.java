@@ -1,6 +1,7 @@
 package ru.kinopoisk;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.kinopoisk.pages.HomePage;
 import ru.kinopoisk.pages.ChooseListsPage;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FilterVampireMoviesListTest extends BaseTest{
 
     @Test
+    @DisplayName("Check filters in movies list test")
     public void shouldHaveCorrectFilterMoviesList() {
 
         log.info("1. Go to home page of Kinopoisk");

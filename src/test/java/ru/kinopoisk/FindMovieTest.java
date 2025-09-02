@@ -1,6 +1,7 @@
 package ru.kinopoisk;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.kinopoisk.pages.HomePage;
@@ -18,6 +19,7 @@ public class FindMovieTest extends BaseTest{
 
     @ParameterizedTest
     @MethodSource("movieProvider")
+    @DisplayName("Search movie by name test")
     public void shouldHaveCorrectToFindMovie(String movieName) {
 
         log.info("1. Go to home page of Kinopoisk");
