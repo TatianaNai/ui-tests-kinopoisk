@@ -8,6 +8,8 @@ public class HomePage extends BasePage implements PagesUniqueElement{
     private WebElement searchMovieInput;
     @FindBy(xpath = "//*[contains(@class,'kinopoisk-header-search')]//button[@type='submit']")
     private WebElement searchButton;
+    @FindBy(xpath = "//*[contains(@class,'styles_title') and contains(.,'Фильмы')]")
+    private WebElement moviesButton;
 
     public HomePage() {
         super(HOME_PAGE_LOCATOR);
@@ -19,5 +21,9 @@ public class HomePage extends BasePage implements PagesUniqueElement{
 
     public void clickSearchButton() {
         searchButton.click();
+    }
+
+    public void clickMoviesButton() {
+        moviesButton.click();
     }
 }
