@@ -9,6 +9,7 @@ public class SelenideConfig {
         options.addArguments("--incognito");
         Configuration.browserCapabilities = options;
         Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 10000;
         Configuration.pageLoadStrategy = "eager";
     }
 }

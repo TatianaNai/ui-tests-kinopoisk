@@ -17,10 +17,12 @@ public class MoviePage extends BasePage {
     }
 
     public String getMovieName() {
+        log.info("Getting movie's name");
         return getMovieNameAndReleaseYear().get("name");
     }
 
     public int getMovieReleaseYear() {
+        log.info("Getting movie's release name");
         return Integer.parseInt(getMovieNameAndReleaseYear().get("year"));
     }
 
