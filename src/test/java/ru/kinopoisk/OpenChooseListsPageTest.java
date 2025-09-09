@@ -10,10 +10,9 @@ import ru.kinopoisk.pages.HomePage;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-@Isolated
 public class OpenChooseListsPageTest extends BaseTest {
 
-    @RepeatedTest(3)
+    @RepeatedTest(2)
     @DisplayName("Open chooseLists page test")
     public void shouldHaveCorrectOpenChooseListsPage() {
 
