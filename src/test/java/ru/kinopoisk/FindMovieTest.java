@@ -3,6 +3,7 @@ package ru.kinopoisk;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,6 +29,7 @@ public class FindMovieTest extends BaseTest{
     @Severity(CRITICAL)
     @Step("Step Search movie by name test")
     @Feature("Base")
+    @Story("Base story")
     public void shouldHaveCorrectToFindMovie(String movieName) {
 
         log.info("1. Go to home page of Kinopoisk");

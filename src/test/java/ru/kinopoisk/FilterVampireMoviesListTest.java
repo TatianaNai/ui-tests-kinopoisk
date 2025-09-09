@@ -1,5 +1,6 @@
 package ru.kinopoisk;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.Step;
@@ -22,6 +23,7 @@ public class FilterVampireMoviesListTest extends BaseTest{
     @Severity(NORMAL)
     @Step("Step Check filters in movies list test")
     @Feature("Search")
+    @Description("Vampire description")
     public void shouldHaveCorrectFilterMoviesList() {
 
         log.info("1. Go to home page of Kinopoisk");
