@@ -1,5 +1,8 @@
 package ru.kinopoisk;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,6 +10,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import ru.kinopoisk.pages.HomePage;
 import ru.kinopoisk.pages.MoviePage;
 import ru.kinopoisk.pages.SearchResultPage;
+
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
@@ -20,6 +25,9 @@ public class FindMovieTest extends BaseTest{
     @ParameterizedTest
     @MethodSource("movieProvider")
     @DisplayName("Search movie by name test")
+    @Severity(CRITICAL)
+    @Step("Step Search movie by name test")
+    @Feature("Base")
     public void shouldHaveCorrectToFindMovie(String movieName) {
 
         log.info("1. Go to home page of Kinopoisk");

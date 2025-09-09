@@ -1,5 +1,8 @@
 package ru.kinopoisk;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +11,7 @@ import ru.kinopoisk.pages.ChooseListsPage;
 import ru.kinopoisk.pages.MoviesListPage;
 import ru.kinopoisk.testData.TestDataManager;
 
+import static io.qameta.allure.SeverityLevel.NORMAL;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -15,6 +19,9 @@ public class FilterVampireMoviesListTest extends BaseTest{
 
     @Test
     @DisplayName("Check filters in movies list test")
+    @Severity(NORMAL)
+    @Step("Step Check filters in movies list test")
+    @Feature("Search")
     public void shouldHaveCorrectFilterMoviesList() {
 
         log.info("1. Go to home page of Kinopoisk");
