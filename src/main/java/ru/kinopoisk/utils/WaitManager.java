@@ -39,7 +39,7 @@ public class WaitManager {
 
     public static void waitElementsDisappear(By locator) {
         try {
-            WAIT.until(driver -> driver.findElements(locator).isEmpty());
+            WAIT.until(driver -> Driver.INSTANCE.getDriver().findElements(locator).isEmpty());
         } catch (TimeoutException ex) {
             throw new RuntimeException("Elements with locator \"" + locator + "\" did not disappear");
         }
