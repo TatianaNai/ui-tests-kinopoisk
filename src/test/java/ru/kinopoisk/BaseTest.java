@@ -2,9 +2,12 @@ package ru.kinopoisk;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import ru.kinopoisk.driverManagers.Driver;
 import ru.kinopoisk.utils.Props;
+import ru.kinopoisk.utils.ScreenshotUtil;
 
+@ExtendWith(ScreenshotUtil.class)
 public class BaseTest {
     @BeforeEach
     public void setUp() {
