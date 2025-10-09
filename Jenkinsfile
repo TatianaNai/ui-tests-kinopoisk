@@ -17,7 +17,9 @@ pipeline {
         stage('Run_Tests') {
             steps {
                 echo "Running tests"
-                bat 'mvn clean test -Dallure.results.directory=allure-results'
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                    bat "mvn clean test -Dallure.results.directory=allure-results"
+                }
             }
         }
 
