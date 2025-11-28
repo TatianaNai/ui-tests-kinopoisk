@@ -7,20 +7,20 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public enum Driver {
     INSTANCE;
-    private WebDriver driver;
+    private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public WebDriver getDriver() {
-        if (driver == null) {
+        if (driver.get() == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--incognito");
             options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-            driver = new ChromeDriver(options);
+            driver.set(new ChromeDriver(options));
         }
-        return driver;
+        return driver.get();
     }
 
     public void quit() {
-        driver.quit();
-        driver = null;
+        driver.get().quit();
+        driver.set(null);
     }
 }
