@@ -1,0 +1,47 @@
+package ru.kinopoisk.utils;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import ru.kinopoisk.driverManagers.Driver;
+
+import java.time.Duration;
+
+public class WaitManager {
+    private static final Wait<WebDriver> WAIT = new FluentWait<>(Driver.INSTANCE.getDriver())
+            .withTimeout(Duration.ofSeconds(10))
+            .pollingEvery(Duration.ofMillis(500))
+            .ignoring(NoSuchElementException.class)
+            .ignoring(StaleElementReferenceException.class);
+
+    public static boolean isElementVisible(By locator) {
+        try {
+            return WAIT.until(driver -> {
+                WebElement element = Driver.INSTANCE.getDriver().findElement(locator);
+                return element.isDisplayed();
+            });
+        } catch (TimeoutException ex) {
+            return false;
+        }
+    }
+
+    public static WebElement waitElementVisible(By locator) {
+        try {
+            return WAIT.until(driver -> {
+                WebElement element = Driver.INSTANCE.getDriver().findElement(locator);
+                element.isDisplayed();
+                return element;
+            });
+        } catch (TimeoutException ex) {
+            throw new RuntimeException("WebElement with locator \"" + locator + "\" was not found");
+        }
+    }
+
+    public static void waitElementsDisappear(By locator) {
+        try {
+            WAIT.until(driver -> driver.findElements(locator).isEmpty());
+        } catch (TimeoutException ex) {
+            throw new RuntimeException("Elements with locator \"" + locator + "\" did not disappear");
+        }
+    }
+}
